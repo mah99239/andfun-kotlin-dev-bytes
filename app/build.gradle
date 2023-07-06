@@ -1,0 +1,99 @@
+
+plugins {
+   id 'com.android.application'
+   id 'kotlin-android'
+   id 'kotlin-kapt'
+   id "androidx.navigation.safeargs"
+    id 'kotlin-parcelize'
+}
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.example.android.devbyteviewer"
+        minSdkVersion 19
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    viewBinding {
+        enabled = true
+    }
+    dataBinding {
+        enabled = true
+    }
+    namespace 'com.example.android.devbyteviewer'
+    compileOptions {
+        sourceCompatibility =17
+                targetCompatibility = 17
+    }
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation libs.kotlin.stdlib.jdk7
+
+    // Support libraries
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.constraintlayout
+
+    // Android KTX
+    implementation libs.androidx.core.ktx
+
+    // Navigation
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+
+    // Coroutines for getting off the UI thread
+    implementation libs.kotlinx.coroutines.core
+    implementation libs.kotlinx.coroutines.android
+
+    // Retrofit for networking
+    implementation libs.retrofit
+    implementation libs.converter.moshi
+    implementation libs.retrofit2.kotlin.coroutines.adapter
+
+    // Moshi for parsing the JSON format
+    implementation libs.moshi
+    implementation libs.moshi.kotlin
+
+    // Joda time library for dealing with time
+    implementation libs.joda.time
+
+    // ViewModel and LiveData (arch components)
+    implementation libs.androidx.lifecycle.extensions
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+
+    // Logging
+    implementation libs.timber
+
+    // Glide for images
+    implementation libs.glide
+
+    // Room database
+    implementation libs.androidx.room.runtime
+    annotationProcessor libs.androidx.room.compiler
+
+    implementation libs.play.services.nearby
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation libs.room.ktx
+
+    // WorkManager
+    implementation libs.androidx.work.runtime.ktx
+}
+
